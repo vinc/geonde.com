@@ -7,42 +7,34 @@ class ElectricityController < ApplicationController
     render json: {
       time: Time.now.utc,
       data: {
-        list: (["fr", "uk"] + Entsoe.countries).uniq.sort
+        list: Country.codes
       }
     }
   end
 
   def show
     expires_in 5.minutes, public: true
-    data = fetch_data
     render json: {
-      time: data.time.utc,
+      time: country.data.time.utc,
       data: {
-        fuels: data.class.aggregated(data.last),
-        total: data.last.values.sum
+        fuels: country.fuels,
+        total: country.fuels.values.sum,
       }
     }
   end
 
   def emissions
     expires_in 5.minutes, public: true
-    data = fetch_data
     render json: {
-      time: data.time.utc,
-      data: data.class.carbon_intensity(data.class.aggregated(data.last))
+      time: country.data.time.utc,
+      data: country.carbon_intensity,
     }
   end
 
   private
 
-  def fetch_data
-    code = params["country"]
-    case code
-    when "fr" then Rte.new
-    when "uk" then Elexon.new
-    when *Entsoe.countries then Entsoe.new(code)
-    else raise ActiveRecord::RecordNotFound
-    end.refresh
+  def country
+    @country ||= Country.new(params["country"])
   end
 
   def record_not_found(error)

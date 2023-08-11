@@ -2,7 +2,7 @@
 
 # https://data.rte-france.com/catalog/-/api/doc/user-guide/Actual+Generation/1.1
 
-class Rte
+class RteData
   include CarbonIntensity
 
   attr_reader :time

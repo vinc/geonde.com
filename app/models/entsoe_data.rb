@@ -2,7 +2,7 @@
 
 # https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html#_processtype
 
-class Entsoe
+class EntsoeData
   include CarbonIntensity
 
   attr_reader :time
@@ -19,7 +19,7 @@ class Entsoe
     "fr" => "10YFR-RTE------C",
     "ch" => "10YCH-SWISSGRIDZ",
     "it" => "10YIT-GRTN-----B",
-    "ie" => "10YIE-1001A00010",
+    #"ie" => "10YIE-1001A00010",
     "uk" => "10Y1001A1001A92E",
   }
 

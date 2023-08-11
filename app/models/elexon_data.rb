@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Elexon
+class ElexonData
   include CarbonIntensity
 
   attr_reader :time
