@@ -1,0 +1,36 @@
+<div class="container py-4">
+  <h2>Electricity Emissions</h2>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Country</th>
+            <th scope="col">Carbon Intensity</th>
+            <th scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @countries.each_with_index do |country, index| %>
+            <tr>
+              <th scope="row"><%= index + 1 %></th>
+              <td><%= country.name %></td>
+              <td><%= number_to_human(country.carbon_intensity) %></td>
+              <td><%= country.data.time.localtime %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <p>Unit: gCO2eq/kWh</p>
+      <p>
+        Sources:
+        <a href="https://bmrs.elexon.co.uk/">Elexon</a>,
+        <a href="https://transparency.entsoe.eu/">ENTSO-E</a>,
+        <a href="https://data.rte-france.com/">RTE</a>,
+        <a href="https://www.nrel.gov/analysis/life-cycle-assessment.html">NREL</a>
+      </p>
+    </div>
+  </div>
+</div>
