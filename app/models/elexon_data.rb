@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# https://bmrs.elexon.co.uk/generation-by-fuel-type
+
 class ElexonData
   include CarbonIntensity
 

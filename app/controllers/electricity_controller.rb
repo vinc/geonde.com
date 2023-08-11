@@ -15,6 +15,7 @@ class ElectricityController < ApplicationController
   def show
     expires_in 5.minutes, public: true
     render json: {
+      zone: country.name,
       time: country.data.time.utc,
       data: {
         fuels: country.fuels,
@@ -26,6 +27,7 @@ class ElectricityController < ApplicationController
   def emissions
     expires_in 5.minutes, public: true
     render json: {
+      zone: country.name,
       time: country.data.time.utc,
       data: country.carbon_intensity,
     }

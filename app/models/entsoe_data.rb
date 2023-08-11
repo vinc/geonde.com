@@ -13,13 +13,12 @@ class EntsoeData
   }
 
   DOMAINS = {
-    "se" => "10YSE-1--------K",
+    "ch" => "10YCH-SWISSGRIDZ",
     "de" => "10Y1001A1001A83F",
     "es" => "10YES-REE------0",
     "fr" => "10YFR-RTE------C",
-    "ch" => "10YCH-SWISSGRIDZ",
     "it" => "10YIT-GRTN-----B",
-    #"ie" => "10YIE-1001A00010",
+    "se" => "10YSE-1--------K",
     "uk" => "10Y1001A1001A92E",
   }
 

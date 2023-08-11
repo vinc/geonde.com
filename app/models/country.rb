@@ -3,8 +3,22 @@
 class Country
   attr_reader :code, :data
 
+  COUNTRIES = {
+    "ch" => "Switzerland",
+    "de" => "Germany",
+    "es" => "Spain",
+    "fr" => "France",
+    "it" => "Italy",
+    "se" => "Sweden",
+    "uk" => "United Kingdom",
+  }
+
   def self.codes
     (["fr", "uk"] + EntsoeData.countries).uniq.sort
+  end
+
+  def self.all
+    COUNTRIES.keys.map { |code| Country.new(code) }
   end
 
   def initialize(code)
@@ -15,6 +29,10 @@ class Country
       when *EntsoeData.countries then EntsoeData.new(code)
       else raise ActiveRecord::RecordNotFound
     end.refresh
+  end
+
+  def name
+    COUNTRIES[@code]
   end
 
   def refresh
