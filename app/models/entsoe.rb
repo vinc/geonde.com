@@ -3,6 +3,10 @@
 # https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html#_processtype
 
 class Entsoe
+  include CarbonIntensity
+
+  attr_reader :time
+
   INTERVALS = {
     "PT60M" => 60.minutes,
     "PT15M" => 15.minutes,
@@ -19,7 +23,7 @@ class Entsoe
     "uk" => "10Y1001A1001A92E",
   }
 
-  SOURCES = {
+  FUELS = {
     "B01" => "Biomass",
     "B02" => "Fossil Brown coal/Lignite",
     "B03" => "Fossil Coal-derived gas",
@@ -42,6 +46,10 @@ class Entsoe
     "B20" => "Other",
   }
 
+  def self.countries
+    DOMAINS.keys
+  end
+
   def self.aggregated(data)
     {
       bio: data["B01"] + data["B17"],
@@ -57,19 +65,7 @@ class Entsoe
       other: data["B15"] + data["B20"],
       solar: data["B16"],
       wind: data["B18"] + data["B19"]
-    }
-  end
-
-  def self.carbon_intensity(data)
-    total = data.values.sum
-
-    carbon = {}
-    carbon[:bio] = 0.494 # CO2eq/MWh
-    carbon[:coal] = 0.986
-    carbon[:gas] = 0.429
-    carbon[:oil] = 0.777
-
-    1000 * %i[bio coal gas oil].map { |k| data[k] * carbon[k] }.sum / total
+    }.select { |k, v| v != 0 }
   end
 
   def initialize(country)
@@ -90,30 +86,31 @@ class Entsoe
     }
     url = "https://web-api.tp.entsoe.eu/api?#{params.to_query}"
     res = Rails.cache.fetch("viridis:entsoe:#{@country}:1", expires_in: 30.minutes) do
-      Rails.logger.debug("Fetching #{url}")
+      Rails.logger.debug("Fetching \"#{url}\"")
       RestClient.get(url).body
     end
     @data = Nokogiri::XML(res)
-    @updated_at = @data.css("timeInterval end").map { |d| Time.parse(d.content) }.max
+    @time = @data.css("timeInterval end").map { |d| Time.parse(d.content) }.min
     self
   end
 
   def last
     res = {}
+    FUELS.keys.each { |fuel| res[fuel] ||= 0 }
     @data.css("TimeSeries").each do |ts|
       interval = INTERVALS[ts.css("resolution").first.content]
-      source = ts.css("psrType").first.content
-      date = Time.parse(ts.css("timeInterval start").first.content)
+      fuel = ts.css("psrType").first.content
+      start = Time.parse(ts.css("timeInterval start").first.content)
+      is_negative = ts.css("[codingScheme]").first.name.start_with?("out")
       i = 0
       v = 0
       ts.css("quantity").each do |q|
         i += 1
-        v = q.content.to_i
-        d = date + interval * i
-        res[source] ||= v if d == @updated_at
+        v = q.content.to_i * (is_negative ? -1 : 1)
+        d = start + interval * i
+        res[fuel] += v if d == @time
       end
     end
-    SOURCES.keys.each { |source| res[source] ||= 0 }
     res
   end
 end

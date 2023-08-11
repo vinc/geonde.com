@@ -3,7 +3,11 @@
 # https://data.rte-france.com/catalog/-/api/doc/user-guide/Actual+Generation/1.1
 
 class Rte
-  SOURCES = [
+  include CarbonIntensity
+
+  attr_reader :time
+
+  FUELS = [
     "BIOENERGY",
     "EXCHANGE",
     "FOSSIL_GAS",
@@ -27,19 +31,7 @@ class Rte
       storage: data["PUMPING"],
       solar: data["SOLAR"],
       wind: data["WIND"],
-    }
-  end
-
-  def self.carbon_intensity(data)
-    total = data.values.sum
-
-    carbon = {}
-    carbon[:bio] = 0.494 # CO2eq/MWh
-    carbon[:coal] = 0.986
-    carbon[:gas] = 0.429
-    carbon[:oil] = 0.777
-
-    1000 * %i[bio coal gas oil].map { |k| data[k] * carbon[k] }.sum / total
+    }.select { |k, v| v != 0 }
   end
 
   def initialize
@@ -56,16 +48,17 @@ class Rte
     }
     url = "https://digital.iservices.rte-france.com/open_api/actual_generation/v1/generation_mix_15min_time_scale?#{params.to_query}"
     res = Rails.cache.fetch("viridis:rte:fr:1", expires_in: 15.minutes) do
-      Rails.logger.debug("Fetching #{url}")
+      Rails.logger.debug("Fetching \"#{url}\"")
       RestClient.get(url, { "Authorization" => "Bearer #{token}" }).body
     end
     @data = JSON.parse(res)
-    @updated_at = Time.parse(@data["generation_mix_15min_time_scale"].last["values"].last["updated_date"])
+    @time = Time.parse(@data["generation_mix_15min_time_scale"].last["values"].last["updated_date"])
     self
   end
 
   def last
     res = {}
+    FUELS.each { |fuel| res[fuel] ||= 0 }
     @data["generation_mix_15min_time_scale"].each do |d|
       k = d["production_type"]
       v = 0
