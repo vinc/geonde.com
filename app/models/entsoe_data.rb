@@ -72,7 +72,7 @@ class EntsoeData
   end
 
   def refresh
-    t1 = Date.today.to_time
+    t1 = Time.now.utc.midnight
     t2 = t1 + 1.day
     fmt = "%Y%m%d%H%M"
     params = {
@@ -84,12 +84,15 @@ class EntsoeData
       "securityToken" => ENV["ENTSOE_TOKEN"]
     }
     url = "https://web-api.tp.entsoe.eu/api?#{params.to_query}"
-    res = Rails.cache.fetch("viridis:entsoe:#{@country}:1", expires_in: 30.minutes) do
+    res = Rails.cache.fetch("viridis:entsoe:#{@country}:2", expires_in: 30.minutes) do
       Rails.logger.debug("Fetching \"#{url}\"")
       RestClient.get(url).body
     end
     @data = Nokogiri::XML(res)
-    @time = @data.css("timeInterval end").map { |d| Time.parse(d.content) }.min
+    @time = @data.css("timeInterval end")
+      .map { |d| Time.parse(d.content) }
+      .group_by(&:itself).transform_values(&:size)
+      .max_by { |item, count| [count, item] }.first
     self
   end
 
