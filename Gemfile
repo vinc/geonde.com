@@ -68,3 +68,4 @@ group :development do
 end
 
 gem "rest-client", "~> 2.1"
+gem "forecaster", github: "vinc/forecaster"
