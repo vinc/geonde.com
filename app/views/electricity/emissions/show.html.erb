@@ -1,0 +1,10 @@
+<div class="container py-4">
+  <h2>Electricity Emissions in <%= @country.name %></h2>
+
+  <p>Carbon Intensity: <%= number_to_human(@country.carbon_intensity) %> tCO2eq/MWh</p>
+  <p>
+    Sources:
+    <%= link_to_source @country.source %>
+    <%= link_to_source "nrel" %>
+  </p>
+</div>

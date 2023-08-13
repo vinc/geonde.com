@@ -1,0 +1,7 @@
+<div class="container py-4">
+  <h2>Electricity Data in <%= @country.name %></h2>
+  <ul>
+    <li><%= link_to "Generation", "/electricity/#{@country.code}/generation" %></li>
+    <li><%= link_to "Emissions", "/electricity/#{@country.code}/emissions" %></li>
+  </ul>
+</div>

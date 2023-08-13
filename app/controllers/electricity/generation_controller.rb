@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-class ElectricityController < ApplicationController
+class Electricity::GenerationController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-
-  def index
-    expires_in 5.minutes, public: true
-  end
 
   def show
     expires_in 5.minutes, public: true

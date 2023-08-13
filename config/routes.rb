@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  get "/api/electricity", to: "electricity#index"
-  get "/api/electricity/:country", to: "electricity#show"
-  get "/api/electricity/:country/emissions", to: "electricity#emissions"
+  get "/electricity", to: "electricity#index"
+  get "/electricity/emissions", to: "electricity/emissions#index"
+  get "/electricity/:country", to: "electricity#show"
+  get "/electricity/:country/generation", to: "electricity/generation#show"
+  get "/electricity/:country/emissions", to: "electricity/emissions#show"
 
-  get "/api/weather/:location", to: "weather#show"
+  get "/weather/:location/forecast", to: "weather/forecast#show"
 
-  get "/electricity-emissions", to: "pages#electricity_emissions"
   root "pages#home"
 end

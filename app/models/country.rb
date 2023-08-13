@@ -31,6 +31,10 @@ class Country
     end.refresh
   end
 
+  def source
+    @data.class.to_s.downcase[0..-5]
+  end
+
   def name
     COUNTRIES[@code]
   end

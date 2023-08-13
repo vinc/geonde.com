@@ -1,0 +1,47 @@
+<div class="container py-4">
+  <h2>Weather Forecast For <%= @location.city %></h2>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Param</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pressure</td>
+            <td><%= @weather.pressure %> hPa</td>
+          </tr>
+          <tr>
+            <td>Temperature</td>
+            <td><%= @weather.temperature %> °C</td>
+          </tr>
+          <tr>
+            <td>Humidity</td>
+            <td><%= @weather.humidity %> %</td>
+          </tr>
+          <tr>
+            <td>Nebulosity</td>
+            <td><%= @weather.nebulosity %> %</td>
+          </tr>
+          <tr>
+            <td>Radiation</td>
+            <td><%= @weather.radiation %> W/m²</td>
+          </tr>
+          <tr>
+            <td>Precipitation</td>
+            <td><%= @weather.precipitation %> mm</td>
+          </tr>
+          <tr>
+            <td>Wind</td>
+            <td><%= @weather.wind %> m/s (<%= @weather.wind_direction%> °)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Source: <%= link_to_source "gfs" %></p>
+    </div>
+  </div>
+</div>
