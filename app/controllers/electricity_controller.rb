@@ -20,7 +20,8 @@ class ElectricityController < ApplicationController
       data: {
         fuels: country.fuels,
         total: country.fuels.values.sum,
-      }
+      },
+      unit: "MW",
     }
   end
 
@@ -30,6 +31,7 @@ class ElectricityController < ApplicationController
       zone: country.name,
       time: country.data.time.utc,
       data: country.carbon_intensity,
+      unit: "tCO2eq/MWh",
     }
   end
 
