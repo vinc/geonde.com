@@ -57,6 +57,8 @@ class RteData
   end
 
   def last
+    raise ActiveRecord::RecordNotFound if @data.nil?
+
     res = {}
     FUELS.each { |fuel| res[fuel] ||= 0 }
     @data["generation_mix_15min_time_scale"].each do |d|

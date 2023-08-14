@@ -57,6 +57,8 @@ class ElexonData
   end
 
   def last
+    raise ActiveRecord::RecordNotFound if @data.nil?
+
     res = {}
     FUELS.each { |fuel| res[fuel] ||= 0 }
     @data.each do |d|

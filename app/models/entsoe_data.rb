@@ -97,6 +97,8 @@ class EntsoeData
   end
 
   def last
+    raise ActiveRecord::RecordNotFound if @data.nil?
+
     res = {}
     FUELS.keys.each { |fuel| res[fuel] ||= 0 }
     @data.css("TimeSeries").each do |ts|
