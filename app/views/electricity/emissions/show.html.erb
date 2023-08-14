@@ -2,7 +2,7 @@
   <h2>Electricity Emissions in <%= @country.name %></h2>
 
   <p>Carbon Intensity: <%= number_to_human(@country.carbon_intensity) %> tCO2eq/MWh</p>
-  <p>Time: <%= @country.data.time.utc %></p>
+  <p>Time: <%= @country.data.time.localtime %></p>
   <p>
     Sources:
     <%= link_to_source @country.source %>

@@ -41,7 +41,7 @@
           </tr>
         </tbody>
       </table>
-      <p>Time: <%= @weather.time.utc %></p>
+      <p>Time: <%= @weather.time.localtime %></p>
       <p>Source: <%= link_to_source "gfs" %></p>
     </div>
   </div>
