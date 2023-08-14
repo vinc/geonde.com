@@ -1,5 +1,5 @@
 Forecaster.configure do |config|
-  config.wgrib2_path = "/usr/local/bin/wgrib2"
+  config.wgrib2_path = Rails.root.join("bin", "wgrib2").to_s
   config.cache_dir = Rails.root.join("tmp", "gfs").to_s
   config.records = {
     prate: ":PRATE:surface:",
