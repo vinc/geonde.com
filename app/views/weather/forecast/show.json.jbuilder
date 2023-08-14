@@ -14,9 +14,9 @@ json.unit do
   json.pressure "hPa"
   json.temperature "°C"
   json.humidity "%"
-  json.nebulosity "%"
-  json.radiation "W/m²"
   json.precipitation "mm"
   json.wind "m/s"
   json.wind_direction "°"
+  json.nebulosity "%"
+  json.radiation "W/m²"
 end

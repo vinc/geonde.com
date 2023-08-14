@@ -17,27 +17,27 @@
           </tr>
           <tr>
             <td>Temperature</td>
-            <td><%= @weather.temperature %> °C</td>
+            <td><%= @weather.temperature %>°C</td>
           </tr>
           <tr>
             <td>Humidity</td>
-            <td><%= @weather.humidity %> %</td>
+            <td><%= @weather.humidity %>%</td>
           </tr>
           <tr>
-            <td>Nebulosity</td>
-            <td><%= @weather.nebulosity %> %</td>
-          </tr>
-          <tr>
-            <td>Radiation</td>
-            <td><%= @weather.radiation %> W/m²</td>
-          </tr>
-          <tr>
-            <td>Precipitation</td>
+            <td>Rain</td>
             <td><%= @weather.precipitation %> mm</td>
           </tr>
           <tr>
             <td>Wind</td>
-            <td><%= @weather.wind %> m/s (<%= @weather.wind_direction%> °)</td>
+            <td><%= @weather.wind %> m/s (<%= @weather.wind_direction%>°)</td>
+          </tr>
+          <tr>
+            <td>Clouds</td>
+            <td><%= @weather.nebulosity %>%</td>
+          </tr>
+          <tr>
+            <td>Radiation</td>
+            <td><%= @weather.radiation %> W/m²</td>
           </tr>
         </tbody>
       </table>
