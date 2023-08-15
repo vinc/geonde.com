@@ -22,7 +22,7 @@ FROM base as build
 
 # Install packages needed to build gems and node modules
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential bzip2 curl g++ gcc gfortran git libaec-dev libboost-dev libcurl4-openssl-dev libpq-dev node-gyp pkg-config python-is-python3 unzip wget zip zlib1g-dev
+    apt-get install --no-install-recommends -y build-essential bzip2 curl g++ gcc gfortran cmake git libaec-dev libboost-dev libcurl4-openssl-dev libpq-dev node-gyp pkg-config python-is-python3 unzip wget zip zlib1g-dev
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=16.9.1
