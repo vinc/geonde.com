@@ -3,6 +3,20 @@
 ---
 options:
   packages:
+    build:
+    - build-essential
+    - libaec-dev
+    - zlib1g-dev
+    - libcurl4-openssl-dev
+    - libboost-dev
+    - curl
+    - wget
+    - zip
+    - unzip
+    - bzip2
+    - gfortran
+    - gcc
+    - g++
     deploy:
     - build-essential
     - libaec-dev

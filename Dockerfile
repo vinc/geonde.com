@@ -22,7 +22,7 @@ FROM base as build
 
 # Install packages needed to build gems and node modules
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential curl git libpq-dev node-gyp pkg-config python-is-python3
+    apt-get install --no-install-recommends -y build-essential bzip2 curl g++ gcc gfortran git libaec-dev libboost-dev libcurl4-openssl-dev libpq-dev node-gyp pkg-config python-is-python3 unzip wget zip zlib1g-dev
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=16.9.1
@@ -52,6 +52,7 @@ RUN bundle exec bootsnap precompile app/ lib/
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
 
+RUN bundle exec rake wgrib2:compile
 
 # Final stage for app image
 FROM base
@@ -60,8 +61,6 @@ FROM base
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential bzip2 curl curl g++ gcc gfortran libaec-dev libboost-dev libcurl4-openssl-dev postgresql-client unzip wget zip zlib1g-dev && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
-
-RUN bundle exec rake wgrib2:compile
 
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
