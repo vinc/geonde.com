@@ -90,6 +90,8 @@ GEM
     cssbundling-rails (1.2.0)
       railties (>= 6.0.0)
     date (3.3.3)
+    dockerfile-rails (1.5.2)
+      rails
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.8.1)
@@ -223,6 +225,7 @@ DEPENDENCIES
   bootsnap
   byebug
   cssbundling-rails
+  dockerfile-rails (>= 1.5)
   dotenv-rails
   forecaster!
   jbuilder
