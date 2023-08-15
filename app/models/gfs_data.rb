@@ -2,7 +2,7 @@
 
 class GfsData
   def initialize
-    @forecast = Forecaster::Forecast.at(Time.now.utc)
+    refresh
   end
 
   def refresh
