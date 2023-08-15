@@ -59,7 +59,7 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential bzip2 curl curl g++ gcc gfortran libaec-dev libboost-dev libcurl4-openssl-dev postgresql-client unzip wget zip zlib1g-dev && \
+    apt-get install --no-install-recommends -y build-essential bzip2 curl curl g++ gcc gfortran cmake libaec-dev libboost-dev libcurl4-openssl-dev postgresql-client unzip wget zip zlib1g-dev && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application
