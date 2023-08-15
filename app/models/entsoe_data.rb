@@ -72,7 +72,7 @@ class EntsoeData
   end
 
   def refresh
-    t1 = Time.now.utc.midnight
+    t1 = Time.now.utc.beginning_of_day
     t2 = t1 + 1.day
     fmt = "%Y%m%d%H%M"
     params = {
