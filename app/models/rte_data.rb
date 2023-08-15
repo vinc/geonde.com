@@ -38,7 +38,7 @@ class RteData
   end
 
   def refresh
-    t1 = Date.today.to_time
+    t1 = Time.now.beginning_of_day.in_time_zone("Europe/Paris")
     t2 = t1 + 1.day
 
     params = {
