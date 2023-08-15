@@ -17,6 +17,7 @@ options:
     - gfortran
     - gcc
     - g++
+    - cmake
     deploy:
     - build-essential
     - libaec-dev
