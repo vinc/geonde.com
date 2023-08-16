@@ -4,7 +4,7 @@ namespace :wgrib2 do
     Dir.mktmpdir do |dir|
       Dir.chdir(dir) do
         begin
-          sh "wget https://vinua.com/bin/wgrib2.gz"
+          sh "wget https://vinua.com/bin/wgrib2.gz.disabled"
           sh "gunzip wgrib2.gz"
           sh "chmod 755 wgrib2"
           mv "wgrib2", Rails.root.join("bin")
