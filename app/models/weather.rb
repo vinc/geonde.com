@@ -20,7 +20,7 @@ class Weather
   end
 
   def pressure
-    (read(:pres).to_f / 100.0).round(1)
+    (read(:mslet).to_f / 100.0).round(1)
   end
 
   def precipitation
