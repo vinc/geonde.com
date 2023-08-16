@@ -6,6 +6,7 @@ namespace :wgrib2 do
         begin
           sh "wget https://vinua.com/bin/wgrib2.gz"
           sh "gunzip wgrib2.gz"
+          sh "chmod u+x wgrib2"
           mv "wgrib2", Rails.root.join("bin")
         rescue
           sh "wget ftp://ftp.cpc.ncep.noaa.gov/wd51we/wgrib2/wgrib2.tgz"
