@@ -1,4 +1,6 @@
 Forecaster.configure do |config|
+  config.server = "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod"
+  config.frequency = 1
   config.wgrib2_path = Rails.root.join("bin", "wgrib2").to_s
   config.cache_dir = Rails.root.join("tmp", "gfs").to_s
   config.records = {

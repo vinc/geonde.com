@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/vinc/forecaster.git
-  revision: 27bf41f835b1b8b6eb001bbbbc140f754268f153
+  revision: 98146e23d15761730aa31676031b7abd93ea5b8f
   specs:
     forecaster (1.0.2)
       chronic (~> 0.10, >= 0.10.0)
