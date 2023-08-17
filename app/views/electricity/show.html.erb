@@ -1,7 +1,7 @@
 <div class="container py-4">
   <h1 class="display-1 fw-bold"><%= link_to "Viridis", root_path, class:"text-primary" %></h1>
 
-  <h3><%= link_to "Electricity Data", electricity_path, class: "text-dark" %> in <%= @country.name %></h3>
+  <h3><%= link_to "Electricity Data", electricity_path, class: "text-body" %> in <%= @country.name %></h3>
   <ul>
     <li><%= link_to "Generation", "/electricity/#{@country.code}/generation" %></li>
     <li><%= link_to "Emissions", "/electricity/#{@country.code}/emissions" %></li>
