@@ -3,36 +3,31 @@
 
   <h3>Electricity Emissions</h3>
 
-  <div class="row">
-    <div class="col-sm-8">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Country</th>
-            <th scope="col" class="text-end">Time</th>
-            <th scope="col" class="text-end">Carbon Intensity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @countries.each_with_index do |country, index| %>
-            <tr>
-              <th scope="row"><%= index + 1 %></th>
-              <td><%= country.name %></td>
-              <td class="text-end"><%= time_ago(country.data.time) %></td>
-              <td class="text-end"><%= number_to_human(country.carbon_intensity) %> gCO2eq/kWh</td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <p>
-        Sources:
-        <%= link_to_source "elexon" %>,
-        <%= link_to_source "entsoe" %>,
-        <%= link_to_source "nrel" %>,
-        <%= link_to_source "rte" %>
-      </p>
-    </div>
-  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Country</th>
+        <th scope="col" class="text-end">Time</th>
+        <th scope="col" class="text-end">Carbon Intensity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @countries.each_with_index do |country, index| %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td><%= country.name %></td>
+          <td class="text-end"><%= time_ago(country.data.time) %></td>
+          <td class="text-end"><%= number_to_human(country.carbon_intensity) %> gCO2eq/kWh</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <p>
+    Sources:
+    <%= link_to_source "elexon" %>,
+    <%= link_to_source "entsoe" %>,
+    <%= link_to_source "nrel" %>,
+    <%= link_to_source "rte" %>
+  </p>
 </div>
-

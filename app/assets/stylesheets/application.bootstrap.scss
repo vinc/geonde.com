@@ -6,3 +6,7 @@ $link-hover-decoration: underline;
 
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons";
+
+.container {
+  max-width: 45rem;
+}

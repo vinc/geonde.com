@@ -3,48 +3,44 @@
 
   <h3><%= link_to "Weather Conditions", weather_path, class: "text-body" %> for <%= @location.city %></h3>
 
-  <div class="row">
-    <div class="col-sm-8">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Param</th>
-            <th scope="col" class="text-end">Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Pressure</td>
-            <td class="text-end"><%= @weather.pressure %> hPa</td>
-          </tr>
-          <tr>
-            <td>Temperature</td>
-            <td class="text-end"><%= @weather.temperature %>°C</td>
-          </tr>
-          <tr>
-            <td>Humidity</td>
-            <td class="text-end"><%= @weather.humidity %>%</td>
-          </tr>
-          <tr>
-            <td>Rain</td>
-            <td class="text-end"><%= @weather.precipitation %> mm</td>
-          </tr>
-          <tr>
-            <td>Wind</td>
-            <td class="text-end"><%= @weather.wind %> m/s (<%= @weather.wind_direction%>°)</td>
-          </tr>
-          <tr>
-            <td>Clouds</td>
-            <td class="text-end"><%= @weather.nebulosity %>%</td>
-          </tr>
-          <tr>
-            <td>Radiation</td>
-            <td class="text-end"><%= @weather.radiation %> W/m²</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>Time: <%= time_ago(@weather.time) %></p>
-      <p>Source: <%= link_to_source "gfs" %></p>
-    </div>
-  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Param</th>
+        <th scope="col" class="text-end">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pressure</td>
+        <td class="text-end"><%= @weather.pressure %> hPa</td>
+      </tr>
+      <tr>
+        <td>Temperature</td>
+        <td class="text-end"><%= @weather.temperature %>°C</td>
+      </tr>
+      <tr>
+        <td>Humidity</td>
+        <td class="text-end"><%= @weather.humidity %>%</td>
+      </tr>
+      <tr>
+        <td>Rain</td>
+        <td class="text-end"><%= @weather.precipitation %> mm</td>
+      </tr>
+      <tr>
+        <td>Wind</td>
+        <td class="text-end"><%= @weather.wind %> m/s (<%= @weather.wind_direction%>°)</td>
+      </tr>
+      <tr>
+        <td>Clouds</td>
+        <td class="text-end"><%= @weather.nebulosity %>%</td>
+      </tr>
+      <tr>
+        <td>Radiation</td>
+        <td class="text-end"><%= @weather.radiation %> W/m²</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Time: <%= time_ago(@weather.time) %></p>
+  <p>Source: <%= link_to_source "gfs" %></p>
 </div>

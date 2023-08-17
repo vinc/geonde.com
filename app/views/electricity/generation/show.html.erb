@@ -3,35 +3,31 @@
 
   <h3>Electricity Generation in <%= @country.name %></h3>
 
-  <div class="row">
-    <div class="col-sm-8">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Fuel</th>
-            <th scope="col" class="text-end">Power</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @country.fuels.sort_by { |_, v| -v }.each_with_index do |(name, value), index| %>
-            <tr>
-              <th scope="row"><%= index + 1 %></th>
-              <td><%= name.capitalize %></td>
-              <td class="text-end"><%= value %> MW</td>
-            </tr>
-          <% end %>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>-</td>
-            <th><strong>Total</strong></th>
-            <td class="text-end"><strong><%= @country.fuels.values.sum %> MW</strong></td>
-          </tr>
-        </tfoot>
-      </table>
-      <p>Time: <%= time_ago(@country.data.time) %></p>
-      <p>Source: <%= link_to_source @country.source %></p>
-    </div>
-  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Fuel</th>
+        <th scope="col" class="text-end">Power</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @country.fuels.sort_by { |_, v| -v }.each_with_index do |(name, value), index| %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td><%= name.capitalize %></td>
+          <td class="text-end"><%= value %> MW</td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>-</td>
+        <th><strong>Total</strong></th>
+        <td class="text-end"><strong><%= @country.fuels.values.sum %> MW</strong></td>
+      </tr>
+    </tfoot>
+  </table>
+  <p>Time: <%= time_ago(@country.data.time) %></p>
+  <p>Source: <%= link_to_source @country.source %></p>
 </div>
