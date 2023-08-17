@@ -1,4 +1,4 @@
-json.zone @location.city
+json.zone @city
 json.time @weather.time.utc
 json.data do
   json.pressure @weather.pressure

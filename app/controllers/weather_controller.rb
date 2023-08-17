@@ -5,6 +5,6 @@ class WeatherController < ApplicationController
   end
 
   def show
-    redirect_to "/weather/#{params[:location].downcase}/conditions"
+    redirect_to "/weather/#{params[:city].downcase}/conditions"
   end
 end

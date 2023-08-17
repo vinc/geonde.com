@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   get "/weather", to: "weather#index"
   get "/weather/conditions", to: "weather/conditions#index"
-  get "/weather/:location", to: "weather#show"
-  get "/weather/:location/conditions", to: "weather/conditions#show"
+  get "/weather/:city", to: "weather#show"
+  get "/weather/:city/conditions", to: "weather/conditions#show"
 
   root "pages#home"
 end
