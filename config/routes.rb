@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   get "/electricity/:country/emissions", to: "electricity/emissions#show"
 
   get "/weather", to: "weather#index"
-  get "/weather/forecast", to: "weather/forecast#index"
+  get "/weather/conditions", to: "weather/conditions#index"
   get "/weather/:location", to: "weather#show"
-  get "/weather/:location/forecast", to: "weather/forecast#show"
+  get "/weather/:location/conditions", to: "weather/conditions#show"
 
   root "pages#home"
 end
