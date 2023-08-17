@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class Weather::ForecastController < ApplicationController
+class Weather::ConditionsController < ApplicationController
   def index
-    redirect_to "/weather/#{params[:location].downcase}/forecast"
+    redirect_to "/weather/#{params[:location].downcase}/conditions"
   end
 
   def show
