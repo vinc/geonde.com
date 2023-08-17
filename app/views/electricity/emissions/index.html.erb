@@ -17,7 +17,7 @@
         <tr>
           <th scope="row"><%= index + 1 %></th>
           <td><%= country.name %></td>
-          <td class="text-end"><%= time_ago(country.data.time) %></td>
+          <td class="text-end"><%= time_ago(country.data.time) %> ago</td>
           <td class="text-end"><%= number_to_human(country.carbon_intensity) %> gCO2eq/kWh</td>
         </tr>
       <% end %>
