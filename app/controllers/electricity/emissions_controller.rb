@@ -2,10 +2,10 @@
 
 class Electricity::EmissionsController < ApplicationController
   def index
-    @countries = Country.all.sort_by {|c| c.carbon_intensity }
+    @countries = Country.all.map(&:refresh).sort_by(&:carbon_intensity)
   end
 
   def show
-    @country = Country.new(params["country"])
+    @country = Country.new(params["country"]).refresh
   end
 end

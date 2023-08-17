@@ -1,5 +1,7 @@
 <div class="container py-4">
-  <h2>Electricity Emissions in <%= @country.name %></h2>
+  <h1 class="display-1 fw-bold"><%= link_to "Viridis", root_path, class:"text-primary" %></h1>
+
+  <h3>Electricity Emissions in <%= @country.name %></h3>
 
   <p>Carbon Intensity: <%= number_to_human(@country.carbon_intensity) %> tCO2eq/MWh</p>
   <p>Time: <%= time_ago(@country.data.time) %></p>

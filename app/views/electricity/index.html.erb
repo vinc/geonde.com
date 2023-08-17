@@ -1,11 +1,10 @@
 <div class="container py-4">
-  <h2>Electricity Data</h2>
-  <%= link_to "Emissions table", "/electricity/emissions" %>
+  <h1 class="display-1 fw-bold"><%= link_to "Viridis", root_path, class:"text-primary" %></h1>
 
-  <h3 class="mt-3">Countries</h3>
+  <h3>Electricity Data</h3>
   <ul>
-    <% Country.codes.each do |code| %>
-      <li><%= link_to code, "/electricity/#{code}" %></li>
+    <% Country.all.sort_by(&:name).each do |country| %>
+      <li><%= link_to country.name, "/electricity/#{country.code}" %></li>
     <% end %>
   </ul>
 </div>

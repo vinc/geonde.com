@@ -28,7 +28,7 @@ class Country
       when "uk" then ElexonData.new
       when *EntsoeData.countries then EntsoeData.new(code)
       else raise ActiveRecord::RecordNotFound
-    end.refresh
+    end
   end
 
   def source
@@ -43,6 +43,7 @@ class Country
     @data = @data.refresh
     @fuels = nil
     @carbon_intensity = nil
+    self
   end
 
   def fuels
