@@ -9,7 +9,8 @@ class Weather::ConditionsController < ApplicationController
     res = Geocoder.search(params[:city]).first
     raise ActiveRecord::RecordNotFound if res.nil?
 
+    time = params[:time]&.to_time || Time.now
     @city = res.city
-    @weather = Weather.new(latitude: res.latitude, longitude: res.longitude)
+    @weather = Weather.new(latitude: res.latitude, longitude: res.longitude, time: time)
   end
 end

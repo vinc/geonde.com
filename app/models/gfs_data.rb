@@ -3,10 +3,15 @@
 class GfsData
   def initialize(time)
     @time = time
-    refresh
+    fetch
   end
 
   def refresh
+    @time = Time.now
+    fetch
+  end
+
+  def fetch
     @forecast = Forecaster::Forecast.at(@time)
     @forecast.fetch
   end
