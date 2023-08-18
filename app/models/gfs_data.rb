@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class GfsData
-  def initialize
+  def initialize(time)
+    @time = time
     refresh
   end
 
   def refresh
-    @forecast = Forecaster::Forecast.at(Time.now.utc)
+    @forecast = Forecaster::Forecast.at(@time)
     @forecast.fetch
   end
 

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Weather
-  def initialize(lat, lon)
-    @lat = lat
-    @lon = lon
-    @gfs = GfsData.new
+  def initialize(latitude: 0, longitude: 0, time: Time.now)
+    @lat = latitude
+    @lon = longitude
+    @gfs = GfsData.new(time)
   end
 
   def time
