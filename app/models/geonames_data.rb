@@ -1,0 +1,2 @@
+class GeonamesData < ApplicationRecord
+end

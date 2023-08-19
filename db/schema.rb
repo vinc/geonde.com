@@ -10,8 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_18_212146) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "geonames_data", force: :cascade do |t|
+    t.string "name"
+    t.string "country", limit: 2
+    t.string "admin1", limit: 20
+    t.string "admin2", limit: 80
+    t.string "admin3", limit: 20
+    t.string "admin4", limit: 20
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "population"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_geonames_data_on_name"
+    t.index ["population"], name: "index_geonames_data_on_population"
+  end
 
 end

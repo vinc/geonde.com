@@ -1,0 +1,16 @@
+<div class="container py-4">
+  <h1 class="display-1 fw-bold mb-3"><%= link_to "Vinua API", root_path, class:"text-primary" %></h1>
+
+  <h3>Geocoding Search</h3>
+
+  <form action="/geocoding/search" method="get" class="mt-3">
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" id="city" name="q" placeholder="City">
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+  </form>
+</div>

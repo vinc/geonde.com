@@ -34,6 +34,7 @@ module ApplicationHelper
     case name
       when "elexon" then link_to("Elexon", "https://bmrs.elexon.co.uk/")
       when "entsoe" then link_to("ENTSO-E", "https://transparency.entsoe.eu/")
+      when "geonames" then link_to("Geonames", "https://www.geonames.org/datasources/")
       when "gfs" then link_to("GFS", "https://www.nco.ncep.noaa.gov/pmb/products/gfs/")
       when "nrel" then link_to("NREL", "https://www.nrel.gov/analysis/life-cycle-assessment.html")
       when "osm" then link_to("OSM", "https://www.openstreetmap.org/copyright")
