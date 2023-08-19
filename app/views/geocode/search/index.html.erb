@@ -12,8 +12,8 @@
       <tr>
         <th scope="col">City</th>
         <th scope="col">Country</th>
-        <th scope="col">Latitude</th>
-        <th scope="col">Longitude</th>
+        <th scope="col" class="text-end">Latitude</th>
+        <th scope="col" class="text-end">Longitude</th>
         <th scope="col" class="text-end">Population</th>
       </tr>
     </thead>
@@ -22,8 +22,8 @@
         <tr>
           <td><%= res.name %></td>
           <td><%= res.country %></td>
-          <td><%= res.latitude %></td>
-          <td><%= res.longitude %></td>
+          <td class="text-end"><%= number_to_human(res.latitude, precision: 4, significant: false, strip_insignificant_zeros: false) %></td>
+          <td class="text-end"><%= number_to_human(res.longitude, precision: 4, significant: false, strip_insignificant_zeros: false) %></td>
           <td class="text-end"><%= res.population %></td>
         </tr>
       <% end %>
