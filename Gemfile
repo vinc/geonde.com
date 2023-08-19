@@ -69,5 +69,5 @@ end
 
 gem "rest-client", "~> 2.1"
 gem "forecaster", github: "vinc/forecaster"
-
+gem "pg_search"
 gem "dockerfile-rails", ">= 1.5", :group => :development
