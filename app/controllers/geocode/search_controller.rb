@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Geocoding::SearchController < ApplicationController
+class Geocode::SearchController < ApplicationController
   def index
     @query = params["q"]
     @results = GeonamesData.search(@query).with_pg_search_rank

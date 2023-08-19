@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   get "/weather/:city", to: "weather#show"
   get "/weather/:city/conditions", to: "weather/conditions#show"
 
-  get "/geocoding", to: "geocoding#index"
-  get "/geocoding/search", to: "geocoding/search#index"
+  get "/geocode", to: "geocode#index"
+  get "/geocode/search", to: "geocode/search#index"
 
   root "pages#home"
 end

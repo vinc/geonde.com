@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class GeocodingController < ApplicationController
+class GeocodeController < ApplicationController
   def index
   end
 end
