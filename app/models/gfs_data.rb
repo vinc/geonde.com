@@ -13,7 +13,7 @@ class GfsData
 
   def fetch
     @forecast = Forecaster::Forecast.at(@time)
-    #@forecast.fetch
+    @forecast.fetch
   end
 
   def time
@@ -21,7 +21,6 @@ class GfsData
   end
 
   def read(key, latitude:, longitude:)
-    #@forecast.read(key, latitude: latitude, longitude: longitude)
-    0
+    @forecast.read(key, latitude: latitude, longitude: longitude)
   end
 end
