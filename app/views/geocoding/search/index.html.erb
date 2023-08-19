@@ -14,7 +14,7 @@
     </div>
   </form>
 
-  <h5><%= pluralize(@results.count, "Result") %></h5>
+  <h5><%= pluralize(@results.size, "Result") %></h5>
 
   <table class="table table-striped">
     <thead>
@@ -23,7 +23,7 @@
         <th scope="col">Country</th>
         <th scope="col">Latitude</th>
         <th scope="col">Longitude</th>
-        <th scope="col">Population</th>
+        <th scope="col" class="text-end">Population</th>
       </tr>
     </thead>
     <tbody>
@@ -33,7 +33,7 @@
           <td><%= res.country %></td>
           <td><%= res.latitude %></td>
           <td><%= res.longitude %></td>
-          <td><%= res.population %></td>
+          <td class="text-end"><%= res.population %></td>
         </tr>
       <% end %>
     </tbody>
