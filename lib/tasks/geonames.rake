@@ -4,6 +4,7 @@ namespace :geonames do
     Dir.mktmpdir do |dir|
       Dir.chdir(dir) do
         sh "wget http://download.geonames.org/export/dump/cities1000.zip"
+        #sh "cp ~/tmp/cities1000.zip ."
         sh "unzip cities1000.zip"
         puts "Deleting old cities"
         GeonamesData.delete_all
