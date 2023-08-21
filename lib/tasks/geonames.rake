@@ -3,13 +3,13 @@ namespace :geonames do
   task import: :environment do
     Dir.mktmpdir do |dir|
       Dir.chdir(dir) do
-        sh "wget http://download.geonames.org/export/dump/cities1000.zip"
-        #sh "cp ~/tmp/cities1000.zip ."
-        sh "unzip cities1000.zip"
+        #sh "cp ~/tmp/cities500.zip ."
+        sh "wget http://download.geonames.org/export/dump/cities500.zip"
+        sh "unzip cities500.zip"
         puts "Deleting old cities"
         GeonamesData.delete_all
         puts "Importing new cities"
-        CSV.foreach("cities1000.txt", col_sep: "\t", liberal_parsing: true) do |row|
+        CSV.foreach("cities500.txt", col_sep: "\t", liberal_parsing: true) do |row|
           GeonamesData.create(
             name: row[1],
             latitude: row[4].to_f,
