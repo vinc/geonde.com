@@ -3,8 +3,8 @@ class ElectricityRefreshJob < ApplicationJob
 
   def perform(*args)
     Country.codes.each do |code|
-      Country.new(code)
-      sleep 10
+      Country.new(code).refresh
+      sleep 3
     end
   end
 end
