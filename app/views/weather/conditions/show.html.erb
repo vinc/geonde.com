@@ -1,4 +1,4 @@
-<%= title "Weather Conditions in #{@city}" %>
+<% title "Weather Conditions in #{@city}" %>
 
 <div class="container py-4">
   <h1 class="display-1 fw-bold mb-3"><%= link_to "Geonde", root_path, class:"text-primary" %></h1>
@@ -19,7 +19,7 @@
           Time
         </td>
         <td class="text-end">
-          <% @weather.time.future? ? "+" : "-" %><%= time_ago(@weather.time) %>
+          <%= @weather.time.future? ? "+" : "-" %><%= time_ago(@weather.time) %>
         </td>
       </tr>
       <tr>
