@@ -56,8 +56,12 @@ class RteData
     self
   end
 
+  def empty?
+    @data.nil?
+  end
+
   def last
-    raise ActiveRecord::RecordNotFound if @data.nil?
+    raise ActiveRecord::RecordNotFound if empty?
 
     res = {}
     FUELS.each { |fuel| res[fuel] ||= 0 }

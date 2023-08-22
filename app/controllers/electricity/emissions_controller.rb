@@ -2,7 +2,7 @@
 
 class Electricity::EmissionsController < ApplicationController
   def index
-    @countries = Country.all.map(&:refresh).sort_by(&:carbon_intensity)
+    @countries = Country.all.map(&:refresh).delete_if(&:empty?).sort_by(&:carbon_intensity)
   end
 
   def show

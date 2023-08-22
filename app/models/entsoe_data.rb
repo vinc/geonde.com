@@ -15,13 +15,11 @@ class EntsoeData
   }
 
   DOMAINS = {
-    #"bg" => "10YCA-BULGARIA-R",
-    #"cy" => "10YCY-1001A0003J",
-    #"ie" => "10YIE-1001A00010",
-    #"mt" => "10Y1001A1001A93C",
     "at" => "10YAT-APG------L",
     "be" => "10YBE----------2",
+    "bg" => "10YCA-BULGARIA-R",
     "ch" => "10YCH-SWISSGRIDZ",
+    "cy" => "10YCY-1001A0003J",
     "cz" => "10YCZ-CEPS-----N",
     "de" => "10Y1001A1001A83F",
     "dk" => "10Y1001A1001A65H",
@@ -32,10 +30,12 @@ class EntsoeData
     "gr" => "10YGR-HTSO-----Y",
     "hr" => "10YHR-HEP------M",
     "hu" => "10YHU-MAVIR----U",
+    "ie" => "10YIE-1001A00010",
     "it" => "10YIT-GRTN-----B",
     "lt" => "10YLT-1001A0008Q",
     "lu" => "10YLU-CEGEDEL-NQ",
     "lv" => "10YLV-1001A00074",
+    "mt" => "10Y1001A1001A93C",
     "nl" => "10YNL----------L",
     "no" => "10YNO-0--------C",
     "po" => "10YPL-AREA-----S",
@@ -113,16 +113,22 @@ class EntsoeData
       Rails.logger.debug("Fetching \"#{url}\"")
       RestClient.get(url).body
     end
+
     @data = Nokogiri::XML(res)
     @time = @data.css("timeInterval end")
       .map { |d| Time.parse(d.content) }
       .group_by(&:itself).transform_values(&:size)
-      .max_by { |item, count| [count, item] }.first
+      .max_by { |item, count| [count, item] }&.first
+
     self
   end
 
+  def empty?
+    @data.nil? || @data.css("Point").count == 0
+  end
+
   def last
-    raise ActiveRecord::RecordNotFound if @data.nil?
+    raise ActiveRecord::RecordNotFound if empty?
 
     res = {}
     FUELS.keys.each { |fuel| res[fuel] ||= 0 }

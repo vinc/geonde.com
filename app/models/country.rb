@@ -4,13 +4,11 @@ class Country
   attr_reader :code, :data
 
   COUNTRIES = {
-    #"bg" => "Bulgaria",
-    #"cy" => "Cyprus",
-    #"ie" => "Ireland",
-    #"mt" => "Malta",
     "at" => "Austria",
     "be" => "Belgium",
+    "bg" => "Bulgaria",
     "ch" => "Switzerland",
+    "cy" => "Cyprus",
     "cz" => "Czech Republic",
     "de" => "Germany",
     "dk" => "Denmark",
@@ -21,10 +19,12 @@ class Country
     "gr" => "Greece",
     "hr" => "Croatia",
     "hu" => "Hungary",
+    "ie" => "Ireland",
     "it" => "Italy",
     "lt" => "Lithuania",
     "lu" => "Luxembourg",
     "lv" => "Latvia",
+    "mt" => "Malta",
     "nl" => "Netherlands",
     "no" => "Norway",
     "po" => "Poland",
@@ -67,6 +67,10 @@ class Country
     @fuels = nil
     @carbon_intensity = nil
     self
+  end
+
+  def empty?
+    @data.empty?
   end
 
   def fuels
