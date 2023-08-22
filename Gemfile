@@ -67,7 +67,8 @@ group :development do
   # gem "spring"
 end
 
-gem "rest-client", "~> 2.1"
-gem "forecaster", github: "vinc/forecaster"
-gem "pg_search"
 gem "dockerfile-rails", ">= 1.5", :group => :development
+gem "forecaster", github: "vinc/forecaster"
+gem "meta-tags"
+gem "pg_search"
+gem "rest-client", "~> 2.1"
