@@ -18,5 +18,6 @@ jobs:
       - name: Push to dokku
         uses: dokku/github-action@master
         with:
+          branch: "trunk"
           git_remote_url: "ssh://dokku@geonde.com:22/viridis"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
