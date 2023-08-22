@@ -3,8 +3,10 @@
 
   <h3>Electricity Data</h3>
   <ul>
-    <% Country.all.sort_by(&:name).each do |country| %>
+    <% @countries.each do |country| %>
       <li><%= link_to country.name, "/electricity/#{country.code}" %></li>
     <% end %>
   </ul>
+
+  <p class="mt-3"><%= pluralize(@countries.count, "country") %></p>
 </div>

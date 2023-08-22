@@ -2,6 +2,7 @@
 
 class ElectricityController < ApplicationController
   def index
+    @countries = Country.all.sort_by(&:name)
   end
 
   def show
