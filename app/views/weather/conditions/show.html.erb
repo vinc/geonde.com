@@ -17,11 +17,7 @@
           Time
         </td>
         <td class="text-end">
-          <% if @weather.time.future? %>
-            in <%= time_ago(@weather.time) %>
-          <% else %>
-            <%= time_ago(@weather.time) %> ago
-          <% end %>
+          <% @weather.time.future? ? "+" : "-" %><%= time_ago(@weather.time) %>
         </td>
       </tr>
       <tr>
