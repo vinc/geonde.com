@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Geocode::SearchController < ApplicationController
   def index
     @query = params["q"]

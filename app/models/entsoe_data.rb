@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html#_processtype
 #
 # 400 requests max per minute
@@ -12,7 +10,7 @@ class EntsoeData
   INTERVALS = {
     "PT60M" => 60.minutes,
     "PT15M" => 15.minutes,
-  }
+  }.freeze
 
   DOMAINS = {
     "at" => "10YAT-APG------L",
@@ -45,7 +43,7 @@ class EntsoeData
     "si" => "10YSI-ELES-----O",
     "so" => "10YSK-SEPS-----K",
     "uk" => "10Y1001A1001A92E",
-  }
+  }.freeze
 
   FUELS = {
     "B01" => "Biomass",
@@ -68,7 +66,7 @@ class EntsoeData
     "B18" => "Wind Offshore",
     "B19" => "Wind Onshore",
     "B20" => "Other",
-  }
+  }.freeze
 
   def self.countries
     DOMAINS.keys
@@ -88,8 +86,8 @@ class EntsoeData
       nuclear: data["B14"],
       other: data["B15"] + data["B20"],
       solar: data["B16"],
-      wind: data["B18"] + data["B19"]
-    }.select { |k, v| v != 0 }
+      wind: data["B18"] + data["B19"],
+    }.reject { |_, v| v == 0 }
   end
 
   def initialize(country)
@@ -106,19 +104,19 @@ class EntsoeData
       "in_Domain" => DOMAINS[@country],
       "periodStart" => t1.strftime(fmt),
       "periodEnd" => t2.strftime(fmt),
-      "securityToken" => ENV["ENTSOE_TOKEN"]
+      "securityToken" => ENV.fetch("ENTSOE_TOKEN", nil),
     }
     url = "https://web-api.tp.entsoe.eu/api?#{params.to_query}"
     res = Rails.cache.fetch("viridis:entsoe:#{@country}:2", expires_in: 30.minutes) do
-      Rails.logger.debug("Fetching \"#{url}\"")
+      Rails.logger.debug { "Fetching \"#{url}\"" }
       RestClient.get(url).body
     end
 
     @data = Nokogiri::XML(res)
-    @time = @data.css("timeInterval end")
-      .map { |d| Time.parse(d.content) }
-      .group_by(&:itself).transform_values(&:size)
-      .max_by { |item, count| [count, item] }&.first
+    @time = @data.css("timeInterval end").
+      map { |d| Time.zone.parse(d.content) }.
+      group_by(&:itself).transform_values(&:size).
+      max_by { |item, count| [count, item] }&.first
 
     self
   end
@@ -131,18 +129,18 @@ class EntsoeData
     raise ActiveRecord::RecordNotFound if empty?
 
     res = {}
-    FUELS.keys.each { |fuel| res[fuel] ||= 0 }
+    FUELS.each_key { |fuel| res[fuel] ||= 0 }
     @data.css("TimeSeries").each do |ts|
       interval = INTERVALS[ts.css("resolution").first.content]
       fuel = ts.css("psrType").first.content
-      start = Time.parse(ts.css("timeInterval start").first.content)
+      start = Time.zone.parse(ts.css("timeInterval start").first.content)
       is_negative = ts.css("[codingScheme]").first.name.start_with?("out")
       i = 0
       v = 0
       ts.css("quantity").each do |q|
         i += 1
         v = q.content.to_i * (is_negative ? -1 : 1)
-        d = start + interval * i
+        d = start + (interval * i)
         res[fuel] += v if d == @time
       end
     end

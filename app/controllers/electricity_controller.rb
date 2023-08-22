@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ElectricityController < ApplicationController
   def index
     @countries = Country.all.sort_by(&:name)

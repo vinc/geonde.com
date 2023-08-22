@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Weather::ConditionsController < ApplicationController
   def index
     redirect_to "/weather/#{params[:city].downcase}/conditions"
@@ -9,8 +7,8 @@ class Weather::ConditionsController < ApplicationController
     res = GeonamesData.search(params[:city]).first
     raise ActiveRecord::RecordNotFound if res.nil?
 
-    time = params[:time]&.to_time || Time.now
+    time = params[:time]&.to_time || Time.zone.now
     @city = res.name
-    @weather = Weather.new(latitude: res.latitude, longitude: res.longitude, time: time)
+    @weather = Weather.new(latitude: res.latitude, longitude: res.longitude, time:)
   end
 end

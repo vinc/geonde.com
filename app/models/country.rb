@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Country
   attr_reader :code, :data
 
@@ -34,10 +32,10 @@ class Country
     "si" => "Slovania",
     "so" => "Slovakia",
     "uk" => "United Kingdom",
-  }
+  }.freeze
 
   def self.codes
-    (["fr", "uk"] + EntsoeData.countries).uniq.sort
+    (%w[fr uk] + EntsoeData.countries).uniq.sort
   end
 
   def self.all
@@ -47,10 +45,14 @@ class Country
   def initialize(code)
     @code = code
     @data = case @code
-      when "fr" then RteData.new
-      when "uk" then ElexonData.new
-      when *EntsoeData.countries then EntsoeData.new(code)
-      else raise ActiveRecord::RecordNotFound
+    when "fr"
+      RteData.new
+    when "uk"
+      ElexonData.new
+    when *EntsoeData.countries
+      EntsoeData.new(code)
+    else
+      ActiveRecord::RecordNotFound
     end
   end
 

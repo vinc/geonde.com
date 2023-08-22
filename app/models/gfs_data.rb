@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class GfsData
   def initialize(time)
     @time = time
@@ -7,7 +5,7 @@ class GfsData
   end
 
   def refresh
-    @time = Time.now
+    @time = Time.zone.now
     fetch
   end
 
@@ -21,6 +19,6 @@ class GfsData
   end
 
   def read(key, latitude:, longitude:)
-    @forecast.read(key, latitude: latitude, longitude: longitude)
+    @forecast.read(key, latitude:, longitude:)
   end
 end

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # https://bmrs.elexon.co.uk/generation-by-fuel-type
 
 class ElexonData
@@ -7,26 +5,26 @@ class ElexonData
 
   attr_reader :time
 
-  FUELS = [
-    "BIOMASS",
-    "CCGT",
-    "COAL",
-    "INTELEC",
-    "INTEW",
-    "INTFR",
-    "INTIFA2",
-    "INTIRL",
-    "INTNED",
-    "INTNEM",
-    "INTNSL",
-    "NPSHYD",
-    "NUCLEAR",
-    "OCGT",
-    "OIL",
-    "OTHER",
-    "PS",
-    "WIND",
-  ]
+  FUELS = %w[
+    BIOMASS
+    CCGT
+    COAL
+    INTELEC
+    INTEW
+    INTFR
+    INTIFA2
+    INTIRL
+    INTNED
+    INTNEM
+    INTNSL
+    NPSHYD
+    NUCLEAR
+    OCGT
+    OIL
+    OTHER
+    PS
+    WIND
+  ].freeze
 
   def self.aggregated(data)
     {
@@ -39,20 +37,17 @@ class ElexonData
       nuclear: data["NUCLEAR"],
       other: data["OTHER"],
       wind: data["WIND"],
-    }.select { |k, v| v != 0 }
-  end
-
-  def initialize
+    }.reject { |_k, v| v == 0 }
   end
 
   def refresh
     url = "https://data.elexon.co.uk/bmrs/api/v1/generation/outturn/FUELINSTHHCUR?format=json"
     res = Rails.cache.fetch("viridis:elexon:uk:1", expires_in: 30.minutes) do
-      Rails.logger.debug("Fetching \"#{url}\"")
+      Rails.logger.debug { "Fetching \"#{url}\"" }
       RestClient.get(url).body
     end
     @data = JSON.parse(res)
-    @time = Time.now
+    @time = Time.zone.now
     self
   end
 

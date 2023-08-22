@@ -1,7 +1,7 @@
 class WeatherRefreshJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
+  def perform
     GfsData.new.refresh
   end
 end

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Electricity::EmissionsController < ApplicationController
   def index
     @countries = Country.all.map(&:refresh).delete_if(&:empty?).sort_by(&:carbon_intensity)

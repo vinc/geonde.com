@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # https://data.rte-france.com/catalog/-/api/doc/user-guide/Actual+Generation/1.1
 
 class RteData
@@ -7,18 +5,18 @@ class RteData
 
   attr_reader :time
 
-  FUELS = [
-    "BIOENERGY",
-    "EXCHANGE",
-    "FOSSIL_GAS",
-    "FOSSIL_HARD_COAL",
-    "FOSSIL_OIL",
-    "HYDRO",
-    "NUCLEAR",
-    "PUMPING",
-    "SOLAR",
-    "WIND",
-  ]
+  FUELS = %w[
+    BIOENERGY
+    EXCHANGE
+    FOSSIL_GAS
+    FOSSIL_HARD_COAL
+    FOSSIL_OIL
+    HYDRO
+    NUCLEAR
+    PUMPING
+    SOLAR
+    WIND
+  ].freeze
 
   def self.aggregated(data)
     {
@@ -31,10 +29,7 @@ class RteData
       storage: data["PUMPING"],
       solar: data["SOLAR"],
       wind: data["WIND"],
-    }.select { |k, v| v != 0 }
-  end
-
-  def initialize
+    }.reject { |_, v| v == 0 }
   end
 
   def refresh
@@ -48,11 +43,11 @@ class RteData
     }
     url = "https://digital.iservices.rte-france.com/open_api/actual_generation/v1/generation_mix_15min_time_scale?#{params.to_query}"
     res = Rails.cache.fetch("viridis:rte:fr:1", expires_in: 15.minutes) do
-      Rails.logger.debug("Fetching \"#{url}\"")
+      Rails.logger.debug { "Fetching \"#{url}\"" }
       RestClient.get(url, { "Authorization" => "Bearer #{token}" }).body
     end
     @data = JSON.parse(res)
-    @time = Time.parse(@data["generation_mix_15min_time_scale"].last["values"].last["updated_date"])
+    @time = Time.zone.parse(@data["generation_mix_15min_time_scale"].last["values"].last["updated_date"])
     self
   end
 
@@ -69,7 +64,8 @@ class RteData
       k = d["production_type"]
       v = 0
       d["values"].each do |value|
-        break if Time.parse(value["end_date"]) > Time.parse(value["updated_date"])
+        break if Time.zone.parse(value["end_date"]) > Time.zone.parse(value["updated_date"])
+
         v = value["value"].to_i
       end
       res[k] = v
@@ -80,8 +76,8 @@ class RteData
   private
 
   def token
-    client = ENV["RTE_CLIENT"]
-    secret = ENV["RTE_SECRET"]
+    client = ENV.fetch("RTE_CLIENT", nil)
+    secret = ENV.fetch("RTE_SECRET", nil)
     basic = Base64.strict_encode64("#{client}:#{secret}")
 
     url = "https://digital.iservices.rte-france.com/token/oauth/"

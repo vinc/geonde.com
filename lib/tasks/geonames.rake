@@ -3,7 +3,6 @@ namespace :geonames do
   task import: :environment do
     Dir.mktmpdir do |dir|
       Dir.chdir(dir) do
-        #sh "cp ~/tmp/cities500.zip ."
         sh "wget http://download.geonames.org/export/dump/cities500.zip"
         sh "unzip cities500.zip"
         puts "Deleting old cities"

@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 class Weather
-  def initialize(latitude: 0, longitude: 0, time: Time.now)
+  def initialize(latitude: 0, longitude: 0, time: Time.zone.now)
     @lat = latitude
     @lon = longitude
     @gfs = GfsData.new(time)
@@ -30,13 +28,13 @@ class Weather
   def wind
     u = read(:ugrd).to_f
     v = read(:vgrd).to_f
-    Math.sqrt(u ** 2 + v ** 2).round(1)
+    Math.sqrt((u**2) + (v**2)).round(1)
   end
 
   def wind_direction
     u = read(:ugrd).to_f
     v = read(:vgrd).to_f
-    ((270 - Math.atan2(u, v) * 180 / Math::PI) % 360).round
+    ((270 - (Math.atan2(u, v) * 180 / Math::PI)) % 360).round
   end
 
   def nebulosity
