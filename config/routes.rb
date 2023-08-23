@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "/electricity", to: "electricity#index"
+  get "/electricity/generation", to: "electricity/generation#index"
   get "/electricity/emissions", to: "electricity/emissions#index"
   get "/electricity/:country", to: "electricity#show"
   get "/electricity/:country/generation", to: "electricity/generation#show"

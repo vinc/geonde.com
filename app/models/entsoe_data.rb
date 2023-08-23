@@ -9,6 +9,7 @@ class EntsoeData
 
   INTERVALS = {
     "PT60M" => 60.minutes,
+    "PT30M" => 30.minutes,
     "PT15M" => 15.minutes,
   }.freeze
 
