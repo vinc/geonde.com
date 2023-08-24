@@ -19,6 +19,7 @@ module ApplicationHelper
     "nrel" => ["NREL", "https://www.nrel.gov/analysis/life-cycle-assessment.html"],
     "osm" => ["OSM", "https://www.openstreetmap.org/copyright"],
     "rte" => ["RTE", "https://data.rte-france.com/"],
+    "eirgrid" => ["EirGrid", "https://www.eirgridgroup.com/"],
   }.freeze
 
   def link_to_source(name)

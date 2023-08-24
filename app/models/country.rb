@@ -35,7 +35,7 @@ class Country
   }.freeze
 
   def self.codes
-    (%w[fr uk] + EntsoeData.countries).uniq.sort
+    (%w[fr ie uk] + EntsoeData.countries).uniq.sort
   end
 
   def self.all
@@ -45,6 +45,8 @@ class Country
   def initialize(code)
     @code = code
     @data = case @code
+    when "ie"
+      EirgridData.new
     when "fr"
       RteData.new
     when "uk"
@@ -80,6 +82,6 @@ class Country
   end
 
   def carbon_intensity
-    @carbon_intensity ||= @data.class.carbon_intensity(fuels).round(1)
+    @carbon_intensity ||= (@data.class.carbon_intensity(fuels) || @data.official_carbon_intensity).round(1)
   end
 end
