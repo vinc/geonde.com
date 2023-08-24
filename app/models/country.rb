@@ -80,6 +80,6 @@ class Country
   end
 
   def carbon_intensity
-    @carbon_intensity ||= @data.class.carbon_intensity(fuels)
+    @carbon_intensity ||= @data.class.carbon_intensity(fuels).round(1)
   end
 end
