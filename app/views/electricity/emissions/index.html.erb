@@ -25,9 +25,8 @@
   </table>
   <p>
     Sources:
-    <%= link_to_source "elexon" %>,
-    <%= link_to_source "entsoe" %>,
-    <%= link_to_source "nrel" %>,
-    <%= link_to_source "rte" %>
+    <% @sources.each_with_index do |source, index| %>
+      <%= link_to_source source %><%= index < @sources.length - 1 ? "," : "" %>
+    <% end %>
   </p>
 </div>
