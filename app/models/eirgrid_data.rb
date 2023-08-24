@@ -8,17 +8,17 @@ class EirgridData
   end
 
   def refresh
-    t1 = Time.now.utc.beginning_of_day
-    t2 = Time.now.utc.end_of_day
+    t1 = Time.now.in_time_zone("Europe/Dublin").beginning_of_day
+    t2 = Time.now.in_time_zone("Europe/Dublin").end_of_day
     fmt = "%d-%h-%Y+%H:%M"
     api = "https://www.smartgriddashboard.com/DashboardService.svc/data"
     url = "#{api}?area=co2intensity&region=ALL&datefrom=#{t1.strftime(fmt)}&dateto=#{t2.strftime(fmt)}"
-    res = Rails.cache.fetch("viridis:semo:ei:1", expires_in: 15.minutes) do
+    res = Rails.cache.fetch("viridis:eirgrid:ei:1", expires_in: 15.minutes) do
       Rails.logger.debug { "Fetching \"#{url}\"" }
       RestClient.get(url).body
     end
     @data = JSON.parse(res)
-    @time = Time.parse(@data["LastUpdated"])
+    @time = @data["LastUpdated"].in_time_zone("Europe/Dublin")
     self
   end
 
