@@ -28,7 +28,7 @@
     </tbody>
   </table>
   <p>
-    Sources:
+    <%= "Source".pluralize(@sources.count) %>:
     <% @sources.each_with_index do |source, index| %>
       <%= link_to_source source %><%= index < @sources.length - 1 ? "," : "" %>
     <% end %>
