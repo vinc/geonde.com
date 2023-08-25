@@ -1,5 +1,3 @@
-require "metar"
-
 class Weather
   def initialize(latitude: 0, longitude: 0, time: Time.zone.now, metar: nil)
     @lat = latitude

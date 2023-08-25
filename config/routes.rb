@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   get "/geocode", to: "geocode#index"
   get "/geocode/search", to: "geocode/search#index"
 
+  get "/metar/:icao", to: "metar#show"
   root "pages#home"
 end

@@ -9,6 +9,8 @@ class Weather::ConditionsController < ApplicationController
     if params[:source] == "metar"
       @airport = params[:city].upcase
       station = Metar::Station.find_by_cccc(@airport)
+      raise ActiveRecord::RecordNotFound if station.nil?
+
       @city = station.name
       @weather = Weather.new(latitude: station.latitude, longitude: station.longitude, time:, metar: station.parser)
       @sources = ["metar"]
