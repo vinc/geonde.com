@@ -7,7 +7,8 @@ class Weather::ConditionsController < ApplicationController
     time = params[:time]&.to_time || Time.zone.now
 
     if params[:source] == "metar"
-      station = Metar::Station.find_by_cccc(params[:city].upcase)
+      @airport = params[:city].upcase
+      station = Metar::Station.find_by_cccc(@airport)
       @city = station.name
       @weather = Weather.new(latitude: station.latitude, longitude: station.longitude, time:, metar: station.parser)
       @sources = ["metar"]

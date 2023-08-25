@@ -3,7 +3,13 @@
 <div class="container py-4">
   <h1 class="display-1 fw-bold mb-3"><%= link_to "Geonde", root_path, class:"text-primary" %></h1>
 
-  <h3><%= link_to "Weather Conditions", weather_path, class: "text-reset" %> in <%= @city %></h3>
+  <h3>
+    <%= link_to "Weather Conditions", weather_path, class: "text-reset" %>
+    in <%= @city %>
+    <% if @airport %>
+      <small class="text-body-secondary">(<%= @airport %>)</small>
+    <% end %>
+  </h3>
 
   <table class="table table-striped font-monospace">
     <thead>
