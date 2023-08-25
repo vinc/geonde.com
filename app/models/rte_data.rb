@@ -72,6 +72,9 @@ class RteData
       end
       res[k] = v
     end
+
+    raise ActiveRecord::RecordNotFound if res.empty?
+
     res
   end
 

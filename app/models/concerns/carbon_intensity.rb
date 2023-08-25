@@ -3,6 +3,8 @@ module CarbonIntensity
 
   module ClassMethods
     def carbon_intensity(data)
+      return if data.empty?
+
       total = data.values.sum
 
       # RTE (tCO2eq/MWh)
