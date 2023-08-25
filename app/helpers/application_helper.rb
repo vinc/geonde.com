@@ -16,6 +16,7 @@ module ApplicationHelper
     "entsoe" => ["ENTSO-E", "https://transparency.entsoe.eu/"],
     "geonames" => ["Geonames", "https://www.geonames.org/datasources/"],
     "gfs" => ["GFS", "https://www.nco.ncep.noaa.gov/pmb/products/gfs/"],
+    "metar" => ["METAR", "https://tgftp.nws.noaa.gov/data/nsd_cccc.txt"],
     "nrel" => ["NREL", "https://www.nrel.gov/analysis/life-cycle-assessment.html"],
     "osm" => ["OSM", "https://www.openstreetmap.org/copyright"],
     "rte" => ["RTE", "https://data.rte-france.com/"],

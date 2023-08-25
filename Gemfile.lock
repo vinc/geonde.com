@@ -116,6 +116,9 @@ GEM
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
+    m9t (0.3.6)
+      i18n (>= 0.3.5)
+      rake
     mail (2.8.1)
       mini_mime (>= 0.1.1)
       net-imap
@@ -124,6 +127,10 @@ GEM
     marcel (1.0.2)
     meta-tags (2.18.0)
       actionpack (>= 3.2.0, < 7.1)
+    metar-parser (1.7.0)
+      i18n (>= 0.8.0)
+      m9t (~> 0.3.5)
+      net-ftp
     method_source (1.0.0)
     mime-types (3.5.0)
       mime-types-data (~> 3.2015)
@@ -131,6 +138,9 @@ GEM
     mini_mime (1.1.5)
     minitest (5.19.0)
     msgpack (1.7.2)
+    net-ftp (0.2.0)
+      net-protocol
+      time
     net-imap (0.3.7)
       date
       net-protocol
@@ -202,6 +212,8 @@ GEM
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     thor (1.2.2)
+    time (0.2.2)
+      date
     timeout (0.4.0)
     timezone (1.3.23)
     turbo-rails (1.4.0)
@@ -236,6 +248,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   meta-tags
+  metar-parser
   pg (~> 1.1)
   pg_search
   puma (~> 5.0)
