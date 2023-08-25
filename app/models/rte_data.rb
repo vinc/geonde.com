@@ -49,6 +49,8 @@ class RteData
     @data = JSON.parse(res)
     @time = Time.zone.parse(@data["generation_mix_15min_time_scale"].last["values"].last["updated_date"])
     self
+  rescue RestClient::ServiceUnavailable
+    self
   end
 
   def empty?

@@ -20,6 +20,8 @@ class EirgridData
     @data = JSON.parse(res)
     @time = @data["LastUpdated"].in_time_zone("Europe/Dublin")
     self
+  rescue RestClient::ServiceUnavailable
+    self
   end
 
   def empty?

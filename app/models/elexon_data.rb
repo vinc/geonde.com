@@ -49,6 +49,8 @@ class ElexonData
     @data = JSON.parse(res)
     @time = Time.zone.now
     self
+  rescue RestClient::ServiceUnavailable
+    self
   end
 
   def empty?

@@ -120,6 +120,8 @@ class EntsoeData
       max_by { |item, count| [count, item] }&.first
 
     self
+  rescue RestClient::ServiceUnavailable
+    self
   end
 
   def empty?
