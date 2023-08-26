@@ -47,6 +47,6 @@
         <li><%= link_to country.name, "/electricity/emissions/#{country.code}" %></li>
       <% end %>
     </ul>
-    <p><%= pluralize(@total, "country") %></p>
+    <p>Data available for <%= pluralize(@total, "country") %></p>
   <% end %>
 </div>
