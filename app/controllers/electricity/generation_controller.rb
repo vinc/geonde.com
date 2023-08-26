@@ -7,6 +7,7 @@ class Electricity::GenerationController < ApplicationController
       @sources = @countries.map(&:source).sort.uniq
     else
       @countries = Country.all.sort_by(&:name)
+      @total = @countries.count
     end
   end
 

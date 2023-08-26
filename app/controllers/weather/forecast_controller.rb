@@ -1,5 +1,6 @@
 class Weather::ForecastController < ApplicationController
   def index
+    @total = GeonamesData.count
   end
 
   def search

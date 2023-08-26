@@ -36,5 +36,7 @@
       Source:
       <%= link_to_source "geonames" %>
     </p>
+  <% else %>
+    <p><%= pluralize(@total, "city") %></p>
   <% end %>
 </div>

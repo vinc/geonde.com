@@ -6,6 +6,7 @@ class Electricity::EmissionsController < ApplicationController
       @sources = (@countries.map(&:source) << "nrel").sort.uniq
     else
       @countries = Country.all.sort_by(&:name)
+      @total = @countries.count
     end
   end
 

@@ -1,5 +1,6 @@
 class Weather::ConditionsController < ApplicationController
   def index
+    @total = Metar::Station.all.count
   end
 
   def search
