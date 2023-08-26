@@ -1,10 +1,10 @@
-<% title "Electricity Generation" %>
+<% title "Electricity generation" %>
 <div class="container py-4">
   <h1 class="display-1 fw-bold mb-3"><%= link_to "Geonde", root_path, class: "text-primary" %></h1>
 
   <% if params["countries"] %>
     <h3>
-      <%= link_to "Electricity Generation", electricity_generation_path, class: "text-reset" %>
+      <%= link_to "Electricity generation", electricity_generation_path, class: "text-reset" %>
       in
       <%= pluralize(@countries.count, "country") %>
     </h3>
@@ -38,7 +38,7 @@
       <% end %>
     </p>
   <% else %>
-    <h3>Electricity Generation</h3>
+    <h3>Electricity generation</h3>
     <ul>
       <% @countries.each do |country| %>
         <li><%= link_to country.name, "/electricity/generation/#{country.code}" %></li>

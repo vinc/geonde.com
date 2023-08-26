@@ -3,12 +3,12 @@
 <div class="container py-4">
   <h1 class="display-1 fw-bold mb-3"><%= link_to "Geonde", root_path, class: "text-primary" %></h1>
 
-  <h3>Geocode Search</h3>
+  <h3>Geocode search</h3>
 
   <%= render "form", query: @query %>
 
   <% if @query.present? %>
-    <h5><%= pluralize(@results.size, "Result") %></h5>
+    <h5><%= pluralize(@results.size, "result") %></h5>
 
     <table class="table table-striped font-monospace">
       <thead>
