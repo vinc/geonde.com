@@ -8,7 +8,7 @@
   <%= render "form", query: @query %>
 
   <% if @query.present? %>
-    <h5><%= pluralize(@results.size, "result") %></h5>
+    <p class="text-secondary"><%= pluralize(@results.size, "result") %></p>
 
     <table class="table table-striped font-monospace">
       <thead>
@@ -37,6 +37,6 @@
       <%= link_to_source "geonames" %>
     </p>
   <% else %>
-    <p>Data available for <%= pluralize(@total, "city") %></p>
+    <p class="text-secondary">Data available for <%= pluralize(@total, "city") %></p>
   <% end %>
 </div>

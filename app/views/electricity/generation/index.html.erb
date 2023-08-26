@@ -44,6 +44,6 @@
         <li><%= link_to country.name, "/electricity/generation/#{country.code}" %></li>
       <% end %>
     </ul>
-    <p>Data available for <%= pluralize(@total, "country") %></p>
+    <p class="text-secondary">Data available for <%= pluralize(@total, "country") %></p>
   <% end %>
 </div>
