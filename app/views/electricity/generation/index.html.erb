@@ -1,34 +1,48 @@
+<% title "Electricity Generation" %>
 <div class="container py-4">
-  <h1 class="display-1 fw-bold mb-3"><%= link_to "Geonde", root_path, class:"text-primary" %></h1>
+  <h1 class="display-1 fw-bold mb-3"><%= link_to "Geonde", root_path, class: "text-primary" %></h1>
 
-  <h3><%= title "Electricity Generation" %></h3>
+  <% if params["countries"] %>
+    <h3>
+      <%= link_to "Electricity Generation", electricity_generation_path, class: "text-reset" %>
+      in
+      <%= pluralize(@countries.count, "country") %>
+    </h3>
 
-  <table class="table table-striped font-monospace">
-    <thead>
-      <tr>
-        <th scope="col">Countries</th>
-        <% @fuels.each do |fuel| %>
-          <th scope="col" class="text-end"><%= fuel.to_s.capitalize %></th>
-        <% end %>
-        <th scope="col" class="text-end">Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @countries.each do |country| %>
+    <table class="table table-striped font-monospace">
+      <thead>
         <tr>
-          <th scope="row"><%= country.name %></th>
+          <th scope="col">Countries</th>
           <% @fuels.each do |fuel| %>
-            <td class="text-end"><%= country.fuels[fuel] || 0 %></td>
+            <th scope="col" class="text-end"><%= fuel.to_s.capitalize %></th>
           <% end %>
-          <td class="text-end"><strong><%= country.fuels.values.sum %></strong></td>
+          <th scope="col" class="text-end">Total</th>
         </tr>
+      </thead>
+      <tbody>
+        <% @countries.each do |country| %>
+          <tr>
+            <th scope="row"><%= country.name %></th>
+            <% @fuels.each do |fuel| %>
+              <td class="text-end"><%= country.fuels[fuel] || 0 %></td>
+            <% end %>
+            <td class="text-end"><strong><%= country.fuels.values.sum %></strong></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <p>
+      <%= "Source".pluralize(@sources.count) %>:
+      <% @sources.each_with_index do |source, index| %>
+        <%= link_to_source source %><%= index < @sources.length - 1 ? "," : "" %>
       <% end %>
-    </tbody>
-  </table>
-  <p>
-    <%= "Source".pluralize(@sources.count) %>:
-    <% @sources.each_with_index do |source, index| %>
-      <%= link_to_source source %><%= index < @sources.length - 1 ? "," : "" %>
-    <% end %>
-  </p>
+    </p>
+  <% else %>
+    <h3>Electricity Generation</h3>
+    <ul>
+      <% @countries.each do |country| %>
+        <li><%= link_to country.name, "/electricity/generation/#{country.code}" %></li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>

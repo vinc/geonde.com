@@ -1,26 +1,20 @@
 class Weather::ConditionsController < ApplicationController
   def index
-    redirect_to "/weather/#{params[:city].downcase}/conditions"
+  end
+
+  def search
+    redirect_to "/weather/conditions/#{params[:airport].downcase}"
   end
 
   def show
     time = params[:time]&.to_time || Time.zone.now
 
-    if params[:source] == "metar"
-      @airport = params[:city].upcase
-      station = Metar::Station.find_by_cccc(@airport)
-      raise ActiveRecord::RecordNotFound if station.nil?
+    @airport = params[:airport].upcase
+    station = Metar::Station.find_by_cccc(@airport)
+    raise ActiveRecord::RecordNotFound if station.nil?
 
-      @city = station.name
-      @weather = Weather.new(latitude: station.latitude, longitude: station.longitude, time:, metar: station.parser)
-      @sources = ["metar"]
-    else
-      res = GeonamesData.search(params[:city]).first
-      raise ActiveRecord::RecordNotFound if res.nil?
-
-      @city = res.name
-      @weather = Weather.new(latitude: res.latitude, longitude: res.longitude, time:)
-      @sources = ["geonames", "gfs"]
-    end
+    @city = station.name
+    @weather = Weather.new(latitude: station.latitude, longitude: station.longitude, time:, metar: station.parser)
+    @sources = ["metar"]
   end
 end

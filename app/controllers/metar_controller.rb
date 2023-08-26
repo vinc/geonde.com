@@ -1,12 +1,12 @@
 class MetarController < ApplicationController
   def show
-    code = params[:icao]
+    code = params[:airport]
     metar = Metar::Station.find_by_cccc(code.upcase)
     raise ActiveRecord::RecordNotFound if metar.nil?
 
     respond_to do |format|
-      format.html { redirect_to "/weather/#{code.downcase}/conditions?source=metar" }
-      format.json { redirect_to "/weather/#{code.downcase}/conditions.json?source=metar" }
+      format.html { redirect_to "/weather/conditions/#{code.downcase}" }
+      format.json { redirect_to "/weather/conditions/#{code.downcase}.json" }
       format.text { render plain: metar.raw.chomp }
     end
   end
