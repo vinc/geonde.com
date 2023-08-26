@@ -42,7 +42,7 @@
     </p>
   <% else %>
     <h3>Electricity emissions</h3>
-    <ul>
+    <ul class="columns">
       <% @countries.each do |country| %>
         <li><%= link_to country.name, "/electricity/emissions/#{country.code}" %></li>
       <% end %>

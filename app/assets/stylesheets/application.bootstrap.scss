@@ -10,3 +10,15 @@ $link-hover-decoration: underline;
 .container {
   max-width: 45rem;
 }
+
+ul.columns {
+  column-count: 1;
+
+  @include media-breakpoint-up(sm) {
+    column-count: 2;
+  }
+
+  @include media-breakpoint-up(lg) {
+    column-count: 3;
+  }
+}
