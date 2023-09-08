@@ -1,0 +1,22 @@
+<div class="container container-narrow py-4">
+  <h1 class="display-1 fw-bold mb-3 position-relative">
+    <%= link_to "Geonde", api_path, class: "text-primary-gradient" %>
+    <span class="position-absolute top-0 translate-middle badge rounded-pill bg-danger fs-5">alpha</span>
+  </h1>
+
+  <h3><%= link_to "Electricity generation", api_electricity_generation_path, class: "text-reset" %></h3>
+  <p><code>/api/electricity/generation/:country</code></p>
+
+  <h3><%= link_to "Electricity emissions", api_electricity_emissions_path, class: "text-reset" %></h3>
+  <p><code>/api/electricity/emissions/:country</code></p>
+
+  <h3><%= link_to "Weather conditions", api_weather_conditions_path, class: "text-reset" %></h3>
+  <p><code>/api/weather/conditions/:airport</code></p>
+
+  <h3><%= link_to "Weather forecast", api_weather_forecast_path, class: "text-reset" %></h3>
+  <p><code>/api/weather/forecast/:city</code></p>
+
+  <h3><%= link_to "Geocode search", api_geocode_search_path, class: "text-reset" %></h3>
+  <p><code>/api/geocode/search</code></p>
+</div>
+
