@@ -7,8 +7,15 @@ $link-hover-decoration: underline;
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons";
 
-.container {
+.container-narrow {
   max-width: 45rem;
+}
+
+.text-primary-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(45deg, #93C, #C3A);
 }
 
 ul.columns {

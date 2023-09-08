@@ -4,7 +4,7 @@ class Weather::ForecastController < ApplicationController
   end
 
   def search
-    redirect_to "/weather/forecast/#{params[:city].downcase}"
+    redirect_to "/api/weather/forecast/#{params[:city].downcase}"
   end
 
   def show

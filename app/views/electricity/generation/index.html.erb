@@ -1,10 +1,13 @@
 <% title "Electricity generation" %>
-<div class="container py-4">
-  <h1 class="display-1 fw-bold mb-3"><%= link_to "Geonde", root_path, class: "text-primary" %></h1>
+<div class="container container-narrow py-4">
+  <h1 class="display-1 fw-bold mb-3 position-relative">
+    <%= link_to "Geonde", api_path, class: "text-primary-gradient" %>
+    <span class="position-absolute top-0 translate-middle badge rounded-pill bg-danger fs-5">alpha</span>
+  </h1>
 
   <% if params["countries"] %>
     <h3>
-      <%= link_to "Electricity generation", electricity_generation_path, class: "text-reset" %>
+      <%= link_to "Electricity generation", api_electricity_generation_path, class: "text-reset" %>
       in
       <%= pluralize(@countries.count, "country") %>
     </h3>
@@ -41,7 +44,7 @@
     <h3>Electricity generation</h3>
     <ul class="columns">
       <% @countries.each do |country| %>
-        <li><%= link_to country.name, "/electricity/generation/#{country.code}" %></li>
+        <li><%= link_to country.name, "/api/electricity/generation/#{country.code}" %></li>
       <% end %>
     </ul>
     <p class="text-secondary">Data available for <%= pluralize(@total, "country") %></p>

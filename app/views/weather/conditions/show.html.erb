@@ -1,9 +1,12 @@
 <% title "Weather conditions in #{@city}" %>
-<div class="container py-4">
-  <h1 class="display-1 fw-bold mb-3"><%= link_to "Geonde", root_path, class: "text-primary" %></h1>
+<div class="container container-narrow py-4">
+  <h1 class="display-1 fw-bold mb-3 position-relative">
+    <%= link_to "Geonde", api_path, class: "text-primary-gradient" %>
+    <span class="position-absolute top-0 translate-middle badge rounded-pill bg-danger fs-5">alpha</span>
+  </h1>
 
   <h3>
-    <%= link_to "Weather conditions", weather_conditions_path, class: "text-reset" %>
+    <%= link_to "Weather conditions", api_weather_conditions_path, class: "text-reset" %>
     in <%= @city %>
     <% if @airport %>
       <small class="text-body-secondary">(<%= @airport %>)</small>
