@@ -65,7 +65,8 @@ class Weather
 
   def wind_direction
     if @metar
-      @data.wind.direction&.value&.round
+      d = @data.wind.direction
+      d.value.round if d.is_a? Metar::Data::Direction
     else
       u = read(:ugrd).to_f
       v = read(:vgrd).to_f
