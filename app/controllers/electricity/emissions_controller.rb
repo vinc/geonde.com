@@ -11,6 +11,7 @@ class Electricity::EmissionsController < ApplicationController
   end
 
   def show
+    @factors = params["factors"]
     @country = Country.new(params["country"]).refresh
   end
 end

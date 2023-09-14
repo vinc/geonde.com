@@ -81,7 +81,7 @@ class Country
     @fuels ||= @data.class.aggregated(@data.last)
   end
 
-  def carbon_intensity
-    @carbon_intensity ||= (@data.class.carbon_intensity(fuels) || @data.official_carbon_intensity).round(1)
+  def carbon_intensity(factors: "nrel")
+    @carbon_intensity ||= (@data.class.carbon_intensity(fuels, factors:) || @data.official_carbon_intensity).round(1)
   end
 end
