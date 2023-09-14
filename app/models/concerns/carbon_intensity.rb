@@ -50,6 +50,8 @@ module CarbonIntensity
       total = data.values.sum
       factors = carbon_intensity_factors(factors.present? || "nrel")
 
+      factors[:thermal] = 0.700
+
       1000 * factors.sum { |k, v| (data[k] || 0) * v } / total
     end
   end

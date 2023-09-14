@@ -20,6 +20,7 @@ module ApplicationHelper
     "nrel" => ["NREL", "https://www.nrel.gov/analysis/life-cycle-assessment.html"],
     "osm" => ["OSM", "https://www.openstreetmap.org/copyright"],
     "rte" => ["RTE", "https://data.rte-france.com/"],
+    "ons" => ["ONS", "https://www.ons.org.br/paginas/energia-agora/carga-e-geracao/"],
     "eirgrid" => ["EirGrid", "https://www.eirgridgroup.com/"],
   }.freeze
 

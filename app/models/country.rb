@@ -5,6 +5,7 @@ class Country
     "at" => "Austria",
     "be" => "Belgium",
     "bg" => "Bulgaria",
+    "br" => "Brazil",
     "ch" => "Switzerland",
     "cy" => "Cyprus",
     "cz" => "Czech Republic",
@@ -35,7 +36,7 @@ class Country
   }.freeze
 
   def self.codes
-    (%w[fr ie uk] + EntsoeData.countries).uniq.sort
+    (%w[br fr ie uk] + EntsoeData.countries).uniq.sort
   end
 
   def self.all
@@ -45,6 +46,8 @@ class Country
   def initialize(code)
     @code = code
     @data = case @code
+    when "br"
+      OnsData.new
     when "ie"
       EirgridData.new
     when "fr"
