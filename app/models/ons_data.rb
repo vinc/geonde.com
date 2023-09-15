@@ -1,4 +1,4 @@
-# https://data.rte-france.com/catalog/-/api/doc/user-guide/Actual+Generation/1.1
+# https://www.ons.org.br/paginas/energia-agora/carga-e-geracao/
 
 class OnsData
   include CarbonIntensity

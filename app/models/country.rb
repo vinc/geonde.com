@@ -45,19 +45,17 @@ class Country
 
   def initialize(code)
     @code = code
-    @data = case @code
-    when "br"
-      OnsData.new
-    when "ie"
-      EirgridData.new
-    when "fr"
-      RteData.new
-    when "uk"
-      ElexonData.new
-    when *EntsoeData.countries
-      EntsoeData.new(code)
-    else
-      ActiveRecord::RecordNotFound
+    @data = initialize_data(code)
+  end
+
+  def initialize_data(code)
+    case code
+    when "br" then OnsData.new
+    when "fr" then RteData.new
+    when "ie" then EirgridData.new
+    when "uk" then ElexonData.new
+    when *EntsoeData.countries then EntsoeData.new(code)
+    else ActiveRecord::RecordNotFound
     end
   end
 
