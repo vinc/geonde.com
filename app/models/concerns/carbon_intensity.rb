@@ -44,11 +44,11 @@ module CarbonIntensity
       end
     end
 
-    def carbon_intensity(data, factors: nil)
+    def carbon_intensity(data, factors = "nrel")
       return if data.empty?
 
       total = data.values.sum
-      factors = carbon_intensity_factors(factors.present? || "nrel")
+      factors = carbon_intensity_factors(factors.presence || "nrel")
 
       factors[:thermal] = 0.700
 

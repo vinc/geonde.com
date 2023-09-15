@@ -6,7 +6,7 @@
 
   <h3><%= title "Electricity emissions in #{@country.name}" %></h3>
 
-  <p>Carbon Intensity: <%= number_to_human(@country.carbon_intensity(factors: @factors)) %> tCO2eq/MWh</p>
+  <p>Carbon Intensity: <%= number_to_human(@country.carbon_intensity(@factors)) %> tCO2eq/MWh</p>
   <p>Time: <%= time_ago(@country.data.time) %> ago</p>
   <p>
     Sources:

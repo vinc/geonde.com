@@ -36,6 +36,6 @@ class EirgridData
     @data["Rows"].pluck("Value").compact.last.to_f
   end
 
-  def self.carbon_intensity(data)
+  def self.carbon_intensity(data, factors = "nrel")
   end
 end
