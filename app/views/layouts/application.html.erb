@@ -10,7 +10,9 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body class="container py-4">
     <%= yield %>
+
+    <p class="text-secondary text-center mt-4 mb-0"><strong>Geonde</strong> is made by <a href="https://vinua.com">Vinua</a></p>
   </body>
 </html>
