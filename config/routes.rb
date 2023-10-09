@@ -26,5 +26,8 @@ Rails.application.routes.draw do
   get "/api/metar/:airport", to: "metar#show"
 
   get "/api", to: "pages#api"
+
+  post "/join", to: "subscribers#create"
+
   root "pages#home"
 end

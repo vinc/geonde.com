@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_18_212146) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_02_212755) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_212146) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_geonames_data_on_name"
     t.index ["population"], name: "index_geonames_data_on_population"
+  end
+
+  create_table "subscribers", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
