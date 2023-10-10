@@ -62,6 +62,19 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "viridis_production"
 
+  config.action_mailer.default_url_options = {
+    host: ENV["HOSTNAME"]
+  }
+
+  config.action_mailer.smtp_settings = {
+    port: ENV["SMTP_PORT"].to_i,
+    address: ENV["SMTP_HOST"],
+    user_name: ENV["SMTP_USERNAME"],
+    password: ENV["SMTP_PASSWORD"],
+    domain: ENV["HOSTNAME"],
+    authentication: :plain
+  }
+
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
