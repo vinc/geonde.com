@@ -65,6 +65,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem "letter_opener"
 end
 
 gem "dockerfile-rails", ">= 1.5", group: :development
@@ -73,4 +75,3 @@ gem "meta-tags"
 gem "pg_search"
 gem "rest-client", "~> 2.1"
 gem "metar-parser", require: "metar"
-gem "letter_opener"
